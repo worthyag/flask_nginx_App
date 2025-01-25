@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  flask_app:
+    image: worthyag/flask_nginx_app:latest
+    ports:
+      - "5001:5000"
+
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - flask_nginx_app
