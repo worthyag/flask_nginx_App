@@ -21,10 +21,10 @@ docker build -t $DOCKER_IMAGE_NAME:latest .
 docker push $DOCKER_IMAGE_NAME:latest
 
 # Remove the old containers (in case they weren't cleaned up).
-docker-compose down
+docker compose down
 
 # Rebuild and start the containers (this ensures the latest code is used).
-docker-compose up --build -d
+docker compose up --build -d
 
 echo "Deployment Complete!"
 
