@@ -13,7 +13,7 @@ cd $LOCAL_DIR || exit
 
 # Pull the latest changes from GitHub.
 echo "Pulling latest changes from GitHub..."
-git pull origin main || exit # Ensure script exits if git pull fails.
+git pull origin master || exit # Ensure script exits if git pull fails.
 
 # Build the Flask Docker image with the latest code.
 echo "Building Flask Docker image..."
