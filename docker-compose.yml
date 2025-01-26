@@ -1,5 +1,5 @@
 services:
-  flask_app:
+  flask_nginx_app:
     image: worthyag/flask_nginx_app:latest
     ports:
       - "5001:5000"
