@@ -12,19 +12,22 @@ DOCKER_IMAGE_NAME="worthyag/flask_nginx_app"
 cd $LOCAL_DIR || exit
 
 # Pull the latest changes from GitHub.
-git pull origin main
+echo "Pulling latest changes from GitHub..."
+git pull origin main || exit # Ensure script exits if git pull fails.
 
-# Build the Flask Docker image
-docker build -t $DOCKER_IMAGE_NAME:latest .
+# Build the Flask Docker image with the latest code.
+echo "Building Flask Docker image..."
+docker build -t $DOCKER_IMAGE_NAME:latest . || exit  # Exit if docker build fails.
 
 # Push the updated image to Docker Hub.
-docker push $DOCKER_IMAGE_NAME:latest
+echo "Pushing updated Docker image to Docker Hub..."
+docker push $DOCKER_IMAGE_NAME:latest || exit  # Exit if docker push fails.
 
-# Remove the old containers (in case they weren't cleaned up).
-docker compose down
+# Stop and remove any running containers.
+docker compose down || exit  # Stop and remove containers
 
-# Rebuild and start the containers (this ensures the latest code is used).
-docker compose up --build -d
+# Rebuild and start the containers to ensure the latest code is used.
+docker compose up --build -d || exit  # Exit if docker-compose up fails
 
 echo "Deployment Complete!"
 
